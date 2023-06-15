@@ -48,9 +48,9 @@ const Nav = () => {
                     </li>
                 </ul>
                 <div className=''>
-                    <div className='flex w-screen justify-between items-center md:w-96'>
+                    <div className='flex w-screen justify-between items-center h-16 md:w-96 md:h-0'>
                     {/* eslint-disable-next-line */}
-                        <img src='https://ivabqohtumjadxnipnsa.supabase.co/storage/v1/object/public/images/unique_logo.jpg' className='w-42 h-20 rounded-3xl mt-3 p-2 md:hidden' alt='no-image'></img>
+                        <img src='https://ivabqohtumjadxnipnsa.supabase.co/storage/v1/object/public/images/unique_logo.jpg' className='w-42 h-20 rounded-3xl mt-4 p-2 md:hidden' alt='no-image'></img>
                         <i className={`bi bi-list cursor-pointer text-4xl mr-3 mt-3 ${showMenuBtn} md:hidden`} onClick={updateNavVisibility}></i>
                         <i className={`bi bi-x cursor-pointer text-5xl mr-3 mt-3 ${navVisibility} md:hidden`} onClick={updateNavVisibility}></i>
                     </div>
