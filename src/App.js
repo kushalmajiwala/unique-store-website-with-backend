@@ -6,12 +6,14 @@ import Contact from './components/Contact';
 import SingleProduct from './components/SingleProduct';
 import Cart from './components/Cart';
 import ErrorPage from './components/ErrorPage';
+import Header from './components/Header';
 import './style.css';
 
 function App() {
   return (
     <>
       <Router>
+        <Header />
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/about" element={<About />}></Route>
