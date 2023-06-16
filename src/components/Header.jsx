@@ -5,7 +5,7 @@ import Nav from './Nav'
 const Header = () => {
     return (
         <>
-            <main className='bg-gray-200 flex justify-between items-center'>
+            <main className='bg-gray-100 flex justify-between items-center'>
                 <NavLink to="/">
                     {/* eslint-disable-next-line */}
                     <img src='https://ivabqohtumjadxnipnsa.supabase.co/storage/v1/object/public/images/unique_logo.jpg' className='w-42 h-20 p-2 rounded-3xl hidden md:block' alt='no-image'></img>

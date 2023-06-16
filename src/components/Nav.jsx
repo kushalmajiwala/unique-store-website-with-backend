@@ -26,22 +26,22 @@ const Nav = () => {
         <>
             <div className=''>
                 <ul className='hidden md:flex justify-between items-center pr-4'>
-                    <li className='p-3 mt-2'>
+                    <li className='p-2 w-32 text-center px-4 mt-2 hover:bg-gray-200 rounded-3xl'>
                         <NavLink to='/' className='no-underline text-black'>HOME</NavLink>
                     </li>
-                    <li className='p-3 mt-2'>
+                    <li className='p-2 w-32 text-center px-4 mt-2 hover:bg-gray-200 rounded-3xl'>
                         <NavLink to='/about' className='no-underline text-black'>ABOUT</NavLink>
                     </li>
-                    <li className='p-3 mt-2'>
+                    <li className='p-2 w-32 text-center px-4 mt-2 hover:bg-gray-200 rounded-3xl'>
                         <NavLink to='/products' className='no-underline text-black'>PRODUCTS</NavLink>
                     </li>
-                    <li className='p-3 mt-2'>
+                    <li className='p-2 w-32 text-center px-4 mt-2 hover:bg-gray-200 rounded-3xl'>
                         <NavLink to='/contact' className='no-underline text-black'>CONTACT</NavLink>
                     </li>
-                    <li className='p-3 mt-2'>
+                    <li className='p-2 w-32 text-center px-4 mt-2'>
                         <Button label='LOGIN' />
                     </li>
-                    <li className='p-3 mt-2'>
+                    <li className='p-2 w-32 text-center px-4 mt-2'>
                         <i className="bi bi-cart p-overlay-badge text-3xl cursor-pointer">
                             <Badge value="0" severity="danger"></Badge>
                         </i>
