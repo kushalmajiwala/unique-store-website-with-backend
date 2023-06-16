@@ -11,7 +11,7 @@ const HeroSection = ({ myData }) => {
                 <div className='inline-block md:flex md:justify-between md:w-2/3'>
                     <div className='w-96 -mt-8 md:mt-2 mb-5'>
                         <p className='pl-5 text-purple-600'>welcome to</p>
-                        <p className='pl-5 text-4xl -mt-5'>{ name }</p>
+                        <p className='pl-5 text-3xl -mt-5'>{ name }</p>
                         <p className='text-justify pl-5 pr-5'>This is our Unique Store Website where people can LOGIN
                             and purchase any products which are listed on our Website
                             All the products prices are affordable for the middle class
