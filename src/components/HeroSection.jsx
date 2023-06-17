@@ -17,11 +17,11 @@ const HeroSection = ({ myData }) => {
                             All the products prices are affordable for the middle class
                             people.
                         </p>
-                        <NavLink to='/products' className='no-underline text-white bg-blue-500 rounded-md py-2 px-4 ml-5'>SHOP NOW</NavLink>
+                        <NavLink to='/products' className='no-underline shadow-lg text-white bg-blue-500 rounded-md py-2 px-4 ml-5'>SHOP NOW</NavLink>
                     </div>
                     <div className='ml-5 pr-5 flex justify-center'>
                         {/* eslint-disable-next-line */}
-                        <img className='w-auto h-56 md:h-64 rounded-xl 2xl:h-80' src={image_url} alt='no-image' />
+                        <img className='w-auto h-56 shadow-lg md:h-64 rounded-xl 2xl:h-80' src={image_url} alt='no-image' />
                     </div>
                 </div>
             </div>
