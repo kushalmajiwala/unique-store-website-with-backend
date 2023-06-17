@@ -9,7 +9,7 @@ const HeroSection = ({ myData }) => {
         <>
             <div className='flex justify-center pt-16 mb-5 md:mb-0'>
                 <div className='inline-block md:flex md:justify-between md:w-2/3'>
-                    <div className=' w-screen -mt-8 md:mt-2 mb-5 2xl:w-1/2 2xl:mt-10'>
+                    <div className='w-screen -mt-8 md:mt-2 md:w-96 mb-5 2xl:w-1/2 2xl:mt-10'>
                         <p className='pl-5 text-purple-600'>welcome to</p>
                         <p className='pl-5 text-3xl -mt-5'>{ name }</p>
                         <p className='text-justify pl-5 pr-5'>This is our Unique Store Website where people can LOGIN
