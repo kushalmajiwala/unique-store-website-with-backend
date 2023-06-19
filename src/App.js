@@ -7,6 +7,7 @@ import SingleProduct from './components/SingleProduct';
 import Cart from './components/Cart';
 import ErrorPage from './components/ErrorPage';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import './style.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="*" element={<ErrorPage />}></Route>
         </Routes>
+        <Footer />
       </Router>
     </>
   );
