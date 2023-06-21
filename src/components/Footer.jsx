@@ -28,7 +28,7 @@ const Footer = () => {
                     </div>
                     <div className='text-white -mt-10 md:-mt-0 md:w-1/4 text-sm p-10 text-justify'>
                         <p>follow us</p>
-                        <div className='w-4/5 flex justify-between'>
+                        <div className=' w-2/3 md:w-4/5 flex justify-between'>
                             <i className="bi bi-linkedin px-2 py-1.5 border-2 rounded-full cursor-pointer"></i>
                             <i className="bi bi-instagram px-2 py-1.5 border-2 rounded-full cursor-pointer"></i>
                             <i className="bi bi-youtube px-2 py-1.5 border-2 rounded-full cursor-pointer"></i>
