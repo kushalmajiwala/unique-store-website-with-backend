@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 const ErrorPage = () => {
   return (
     <>
-      <div className='flex justify-center p-14'>
+      <div className='flex justify-center pt-16'>
         <div>
           <div>
             <p className='text-6xl text-center font-semibold font-sans'>404</p>
