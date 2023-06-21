@@ -52,7 +52,7 @@ const Nav = () => {
                         <i className={`bi bi-x cursor-pointer text-5xl mr-2 mt-4 ${navVisibility} md:hidden`} onClick={updateNavVisibility}></i>
                     </div>
                     <div className='inline-block md:flex text-center'>
-                        <ul className={`${navVisibility} md:hidden pr-4 text-center text-2xl w-screen h-screen`}>
+                        <ul className={`${navVisibility} md:hidden pr-4 text-center text-2xl w-screen h-screen`} >
                             <li className='p-3 mt-2'>
                                 <NavLink to='/' className='no-underline text-gray-500 opacity-100' onClick={updateNavVisibility}>HOME</NavLink>
                             </li>
