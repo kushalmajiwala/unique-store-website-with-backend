@@ -3,7 +3,7 @@ import React from 'react'
 const Trusted = () => {
     return (
         <>
-            <div className='w-auto bg-gray-100 md:mt-10 p-12'>
+            <div className='w-auto bg-gray-100 md:mt-10 p-12 md:pt-16 pb-20'>
                 <div className='w-auto inline'>
                     <div className='text-center'>
                         <p>Trusted By 1000+ Companies</p>

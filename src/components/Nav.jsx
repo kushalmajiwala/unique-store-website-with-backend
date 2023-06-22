@@ -22,7 +22,7 @@ const Nav = () => {
     return (
         <>
             <div className=''>
-                <ul className='hidden md:flex justify-between items-center pr-4'>
+                <ul className='hidden md:flex justify-between items-center pr-4 md:p-3'>
                     <li className='p-2 w-32 text-center px-4 mt-2 hover:bg-gray-200 rounded-3xl'>
                         <NavLink to='/' className='no-underline text-gray-500 opacity-100'>HOME</NavLink>
                     </li>

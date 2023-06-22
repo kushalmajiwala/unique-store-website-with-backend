@@ -15,7 +15,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className='w-auto bg-gray-800 flex justify-center'>
+            <div className='w-auto bg-gray-800 flex justify-center md:py-10'>
                 <div className=' w-3/4 md:flex justify-between'>
                     <div className='text-white md:w-1/4 text-sm p-10 text-justify'>
                         <h6>Unique Stores</h6>

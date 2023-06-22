@@ -7,7 +7,7 @@ const HeroSection = ({ myData }) => {
 
     return (
         <>
-            <div className='flex justify-center pt-16 mb-5 md:mb-0'>
+            <div className='flex justify-center pt-16 mb-5 md:mb-0 md:pt-20 pb-8'>
                 <div className='inline-block md:flex md:justify-between md:w-2/3'>
                     <div className='w-screen -mt-8 md:mt-2 md:w-96 mb-5 2xl:w-1/2 2xl:mt-10'>
                         <p className='pl-5 text-purple-600'>welcome to</p>
@@ -17,7 +17,7 @@ const HeroSection = ({ myData }) => {
                             All the products prices are affordable for the middle class
                             people.
                         </p>
-                        <NavLink to='/products' className='no-underline shadow-lg text-white bg-blue-500 rounded-md py-2 px-4 ml-5'>SHOP NOW</NavLink>
+                        <NavLink to='/products' className='no-underline shadow-sm text-white bg-blue-500 rounded-md py-2 px-4 ml-5'>SHOP NOW</NavLink>
                     </div>
                     <div className='ml-5 pr-5 flex justify-center'>
                         {/* eslint-disable-next-line */}

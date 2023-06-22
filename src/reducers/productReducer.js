@@ -1,5 +1,5 @@
 const ProductReducer = (state, action) => {
-    switch (action) {
+    switch (action.type) {
         case "SET_LOADING":
             return {
                 ...state,
