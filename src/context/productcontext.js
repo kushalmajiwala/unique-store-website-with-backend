@@ -13,11 +13,14 @@ const AppProvider = ({ children }) => {
         isLoading: false,
         isError: false,
         products: [],
-        featureProducts: []
+        featureProducts: [],
+        isSingleLoading: false,
+        singleProduct: {}
     }
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
+    //Getting All Products
     const getProducts = async (url) => {
         dispatch({ type: "SET_LOADING",  });
         try {
@@ -25,7 +28,19 @@ const AppProvider = ({ children }) => {
             const products = await res.data;
             dispatch({ type: "SET_API_DATA", payload: products });
         } catch (error) {
-            dispatch({ type: "API_ERROR",  })
+            dispatch({ type: "API_ERROR",  });
+        }
+    }
+
+    //Getting Single Products
+    const getSingleProduct = async (url) => {
+        dispatch({ type: "SET_SINGLE_LOADING",  });
+        try {
+            const res = await axios.get(url);
+            const singleProduct = await res.data;
+            dispatch({ type: "SET_SINGLE_PRODUCT", payload: singleProduct });
+        } catch (error) {
+            dispatch({ type: "SET_SINGLE_ERROR",  });
         }
     }
 
@@ -35,7 +50,7 @@ const AppProvider = ({ children }) => {
 
     return(
         <>
-            <AppContext.Provider value={{ ...state }}>{ children }</AppContext.Provider>
+            <AppContext.Provider value={{ ...state, getSingleProduct }}>{ children }</AppContext.Provider>
         </>
     );
 };
