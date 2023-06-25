@@ -6,6 +6,8 @@ import PageNavigation from './PageNavigation';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import MyImage from './MyImage';
 import FormatPrice from '../helpers/FormatPrice';
+import Star from './Star';
+import AddToCart from './AddToCart';
 
 const API = "https://api.pujakaitem.com/api/products";
 
@@ -56,45 +58,47 @@ const SingleProduct = () => {
                     </div>
                     <div className='pt-3 md:w-1/2 md:pt-0'>
                         <p className=' text-3xl'>{name}</p>
-                        <p>{stars}</p>
-                        <p>{reviews} Reviews</p>
-                        <div>
+                        <Star stars={stars} reviews={reviews} />
+                        <div className='mt-3 font-semibold'>
                             MRP:
                             <del>
                                 <FormatPrice price={price + 250000} />
                             </del>
-                            <p className=' text-blue-500 text-xl'>Deal of the Day: <FormatPrice price={price} /></p>
-                            <p className=' text-justify'>{description}</p>
-                            <div className='flex justify-between border-b-2'>
-                                <div className=' '>
+                            <p className='text-blue-500 text-lg mt-3 font-semibold'>Deal of the Day: <FormatPrice price={price} /></p>
+                            <p className='text-justify text-gray-500'>{description}</p>
+                            <div className='flex mt-3 justify-between border-b-2'>
+                                <div className=''>
                                     <div className='flex justify-center'>
-                                        <i class="bi bi-truck text-black text-2xl bg-gray-200 px-2 py-1 rounded-full"></i>
+                                        <i className="bi bi-truck text-black text-2xl bg-gray-200 px-2 py-1 rounded-full"></i>
                                     </div>
-                                    <p className='text-center'>Free Delivery</p>
+                                    <p className='text-center text-gray-500'>Free Delivery</p>
                                 </div>
                                 <div className=' '>
                                     <div className='flex justify-center'>
-                                        <i class="bi bi-recycle text-black text-2xl bg-gray-200 px-2 py-1 rounded-full"></i>
+                                        <i className="bi bi-recycle text-black text-2xl bg-gray-200 px-2 py-1 rounded-full"></i>
                                     </div>
-                                    <p className='text-center'>30 Days Replacement</p>
+                                    <p className='text-center text-gray-500'>30 Days Replacement</p>
                                 </div>
                                 <div className=' '>
                                     <div className='flex justify-center'>
-                                        <i class="bi bi-truck text-black text-2xl bg-gray-200 px-2 py-1 rounded-full"></i>
+                                        <i className="bi bi-truck text-black text-2xl bg-gray-200 px-2 py-1 rounded-full"></i>
                                     </div>
-                                    <p className='text-center'>Delivered</p>
+                                    <p className='text-center text-gray-500'>Delivered</p>
                                 </div>
                                 <div className=' '>
                                     <div className='flex justify-center'>
-                                        <i class="bi bi-shield-shaded text-black text-2xl bg-gray-200 px-2 py-1 rounded-full"></i>
+                                        <i className="bi bi-shield-shaded text-black text-2xl bg-gray-200 px-2 py-1 rounded-full"></i>
                                     </div>
-                                    <p className='text-center'>2 Year Warranty</p>
+                                    <p className='text-center text-gray-500'>2 Year Warranty</p>
                                 </div>
                             </div>
+                            <div className='mt-4 border-b-2 pb-1'>
+                                <p className=' -mt-2'><span className=' text-gray-500'>Available: </span><span className='font-semibold'> {stock > 0 ? "In Stock" : "Not Available"}</span> </p>
+                                <p className=' -mt-2'><span className=' text-gray-500'>ID: </span><span className='font-semibold'> {id}</span> </p>
+                                <p className=' -mt-2'><span className=' text-gray-500'>Brand: </span><span className='font-semibold'> {company} </span> </p>
+                            </div>
                             <div className='mt-3'>
-                                <p className=' -mt-2'><span className=' text-gray-500'>Available: </span> {stock > 0 ? "In Stock": "Not Available"} </p>
-                                <p className=' -mt-2'><span className=' text-gray-500'>ID: </span> {id} </p>
-                                <p className=' -mt-2'><span className=' text-gray-500'>Brand: </span> {company} </p>
+                                {stock > 0 && <AddToCart product={singleProduct}/>}
                             </div>
                         </div>
                     </div>

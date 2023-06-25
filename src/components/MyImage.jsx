@@ -12,7 +12,7 @@ const MyImage = ({ imgs = [{ url: ""}] }) => {
                     {
                         imgs.map((currElem, index) => {
                             return (
-                                <figure>
+                                <figure key={index}>
                                     <img src={currElem.url} alt={currElem.filename} key={index} className="w-32 h-24 cursor-pointer shadow-md" onClick={() => setMainImage(currElem)} />
                                 </figure>
                             )
