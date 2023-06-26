@@ -10,7 +10,7 @@ const CartAmountToggle = ({ amount, setDecrease, setIncrease }) => {
                     <div className='text-3xl text-purple-400'>{amount}</div>
                     <button onClick={() => setIncrease()}><i className="bi bi-plus text-3xl"></i></button>
                 </div>
-                <div className='mt-3'>
+                <div className='mt-4'>
                     <NavLink to='/contact' className='no-underline text-white bg-blue-500 rounded-md py-2 px-4'>ADD TO CART</NavLink>
                 </div>
             </div>

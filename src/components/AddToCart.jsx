@@ -32,7 +32,7 @@ const AddToCart = ({ product }) => {
                     </div>
                 </div>
             </div>
-            <div>
+            <div className='mt-2'>
                 <CartAmountToggle amount={amount} setDecrease={setDecrease} setIncrease={setIncrease} />
             </div>
         </>

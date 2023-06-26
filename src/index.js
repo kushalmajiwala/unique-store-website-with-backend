@@ -7,12 +7,15 @@ import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import { AppProvider } from './context/productcontext';
+import { FilterContextProvider } from './context/filtercontext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AppProvider>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <FilterContextProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </FilterContextProvider>
   </AppProvider>
 );
