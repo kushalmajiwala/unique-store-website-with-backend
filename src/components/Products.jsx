@@ -8,10 +8,10 @@ const Products = () => {
         <>
             <div className='flex justify-center'>
                 <div className='flex w-5/6'>
-                    <div className='w-2/6'>
+                    <div className='w-2/6 hidden md:block'>
                         <FilterSection />
                     </div>
-                    <div className=' flex justify-center w-full '>
+                    <div className='w-full'>
                         <div>
                             <Sort />
                         </div>

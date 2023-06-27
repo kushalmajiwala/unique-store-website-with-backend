@@ -9,9 +9,9 @@ const Product = (curElem) => {
     return (
         <>
             <NavLink to={`/singleproduct/${id}`} className='no-underline text-black'>
-                <div className='bg-white pt-3 px-3 pb-1 md:w-5/6 shadow-md mt-4 hover:scale-110'>
+                <div className='bg-white pt-3 px-3 pb-1 md:w-11/12 shadow-md mt-4 hover:scale-110'>
                     <figure className='relative'>
-                        <img src={image} alt={name} className='h-44 w-64 md:h-40 md:w-72'/>
+                        <img src={image} alt={name} className='h-44 w-64 md:h-44 md:w-64'/>
                         <figcaption className='absolute bg-white top-2 right-2 text-gray-500 rounded-xl w-fit px-3 py-1 text-sm'>{category}</figcaption>
                     </figure>
                     <div>

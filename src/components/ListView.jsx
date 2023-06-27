@@ -27,7 +27,7 @@ const ListView = ({ products }) => {
                   </figure>
                   <div className='md:w-1/2 pr-5 flex items-center'>
                     <div className='w-full'>
-                      <p className='text-lg -mt-1'>{name}</p>
+                      <p className='text-2xl -mt-1'>{name}</p>
                       <p className='text-sm -mt-2 text-gray-400'><FormatPrice price={price} /></p>
                       <p className='test-sm -mt-4 text-justify'>{description.slice(0, 90)}</p>
                       <NavLink to={`/singleproduct/${id}`}>

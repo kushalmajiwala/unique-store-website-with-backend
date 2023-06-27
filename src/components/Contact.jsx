@@ -7,7 +7,7 @@ const Contact = () => {
                 <div className='p-3 w-full'>
                     <h2 className='text-center mb-5'>Feel Free to Contact Us</h2>
                     {/* eslint-disable-next-line */}
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.606900655041!2d72.79964237445552!3d21.207769380486766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04c287031a507%3A0x7883a27798cc9de4!2sVirat%20Shakti%20Apartment!5e0!3m2!1sen!2sin!4v1687520301088!5m2!1sen!2sin" width="100%" height="470" style={{border:0}} allowFullScreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.606900655041!2d72.79964237445552!3d21.207769380486766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04c287031a507%3A0x7883a27798cc9de4!2sVirat%20Shakti%20Apartment!5e0!3m2!1sen!2sin!4v1687520301088!5m2!1sen!2sin" width="100%" height="470" style={{border:0}} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
             <div className='flex justify-center py-10'>
