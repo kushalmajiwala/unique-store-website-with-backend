@@ -20,7 +20,7 @@ const FeatureProduct = () => {
     return (
         <>
             <div className='bg-gray-100 flex justify-center p-14 md:py-24'>
-                <div className='md:pl-12'>
+                <div className='md:pl-12 md:w-5/6'>
                     <div className=''>
                         <div>
                             <p className='text-sm text-purple-500'>CHECK NOW!</p>
