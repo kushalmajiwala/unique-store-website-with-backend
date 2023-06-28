@@ -7,7 +7,7 @@ const Products = () => {
     return (
         <>
             <div className='flex justify-center'>
-                <div className='flex w-5/6'>
+                <div className='flex w-11/12'>
                     <div className='w-2/6 hidden md:block'>
                         <FilterSection />
                     </div>
