@@ -12,7 +12,8 @@ const initialState = {
     filters: {
         text: "",
     },
-    no_products: false
+    no_products: false,
+    active_category: "All",
 }
 
 export const FilterContextProvider = ({ children }) => {

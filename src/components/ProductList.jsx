@@ -9,7 +9,7 @@ const ProductList = () => {
     if (no_products === true) {
         return (
             <>
-                <div className='flex justify-center items-center w-full h-56'>
+                <div className='flex justify-center items-center w-full h-96'>
                     <div>
                         <p className=' text-gray-700 text-xl'>No Products Available!!!</p>
                     </div>
