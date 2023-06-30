@@ -3,17 +3,26 @@ import { useFilterContext } from '../context/filtercontext'
 
 const FilterSection = () => {
 
-  const { filters: { text }, all_products, updateFilterValue, active_category } = useFilterContext();
+  const { filters: { text, color }, all_products, updateFilterValue, active_category } = useFilterContext();
 
   const getUniqueData = (data, property) => {
     let newVal = data.map((currElem) => {
       return currElem[property];
     });
-    return (newVal = ["All", ...new Set(newVal)]);
+    if (property === "colors") {
+      return (newVal = ["All", ...new Set([].concat(...newVal))]);
+      // newVal = newVal.flat(); 
+    }
+    else {
+      return (newVal = ["All", ...new Set(newVal)]);
+    }
   };
 
   const categoryOnlyData = getUniqueData(all_products, "category");
   const companyOnlyData = getUniqueData(all_products, "company");
+  const colorsData = getUniqueData(all_products, "colors");
+
+  console.log(colorsData);
 
   return (
     <>
@@ -42,13 +51,32 @@ const FilterSection = () => {
         <div>
           <h4>Company</h4>
           <div className='pt-2'>
-            <select name='company' id='company' className='px-2 py-1 border-2 border-gray-500' onClick={updateFilterValue}>
+            <select name='company' id='company' className='px-2 py-1 border-2 border-gray-500 hover:cursor-pointer' onClick={updateFilterValue}>
               {
                 companyOnlyData.map((currElem, index) => {
                   return <option key={index} name="company" value={currElem}>{currElem}</option>
                 })
               }
             </select>
+          </div>
+        </div>
+      </div>
+      <div className='flex justify-start mt-5'>
+        <div>
+          <h4>Colors</h4>
+          <div className='mt-4 flex'>
+            {
+              colorsData.map((curColor, index) => {
+                if (curColor === "All") {
+                  return <button key={index} name="color" value={curColor} type='button' className='cursor-pointer w-7 h-7 rounded-full hover:opacity-60' onClick={updateFilterValue}>
+                    All
+                  </button>
+                }
+                return <button key={index} name="color" value={curColor} type='button' className='cursor-pointer w-7 h-7 rounded-full ml-2 hover:opacity-60' style={{ backgroundColor: curColor }} onClick={updateFilterValue}>
+                  {color === curColor ? <i className="bi bi-check text-white"></i> : null}
+                </button>
+              })
+            }
           </div>
         </div>
       </div>

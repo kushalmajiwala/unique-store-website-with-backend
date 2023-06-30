@@ -4,9 +4,9 @@ import GridView from './GridView';
 import ListView from './ListView';
 
 const ProductList = () => {
-    const { filter_products, grid_view, no_products } = useFilterContext();
+    const { filter_products, grid_view } = useFilterContext();
 
-    if (no_products === true) {
+    if (filter_products.length === 0) {
         return (
             <>
                 <div className='flex justify-center items-center w-full h-96'>

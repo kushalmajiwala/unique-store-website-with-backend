@@ -21,7 +21,7 @@ const Sort = () => {
           <div className='pt-3 md:w-1/3 md:flex justify-center items-center md:pl-10'>
             <form action='#'>
               <label htmlFor='sort'></label>
-              <select name='sort' id='sort' className='px-2 py-1 border-2 border-gray-500' onClick={sorting}>
+              <select name='sort' id='sort' className='px-2 py-1 border-2 border-gray-500 hover:cursor-pointer' onClick={sorting}>
                 <option value="" disabled selected>Select Criteria</option>
                 <option value="lowest">Price(lowest)</option>
                 <option value="highest">Price(highest)</option>

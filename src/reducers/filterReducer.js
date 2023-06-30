@@ -64,9 +64,7 @@ const filterReducer = (state, action) => {
             let { all_products } = state;
             let tempFilterProduct = [...all_products];
 
-            const { text, category, company } = state.filters;
-
-            let temp_product_number = false;
+            const { text, category, company, color } = state.filters;
 
             let active_category = "All";
 
@@ -74,46 +72,31 @@ const filterReducer = (state, action) => {
                 tempFilterProduct = tempFilterProduct.filter((currElem) => {
                     return currElem.name.toLowerCase().includes(text);
                 });
-                if (tempFilterProduct.length === 0) {
-                    temp_product_number = true;
-                }
             }
 
-            if (category) {
+            if (category !== "All") {
                 tempFilterProduct = tempFilterProduct.filter((currElem) => {
-                    if (category === "All") {
-                        return currElem.category;
-                    }
                     if (category === currElem.category) {
-                        active_category = currElem.category
-                    }
-                    if (category === "All") {
                         active_category = currElem.category
                     }
                     return currElem.category === category;
                 });
-                if (tempFilterProduct.length === 0) {
-                    temp_product_number = true;
-                }
             }
 
-            if (company) {
-                console.log("This is called");
+            if (company !== "All") {
                 tempFilterProduct = tempFilterProduct.filter((currElem) => {
-                    if (company === "All") {
-                        return currElem.company;
-                    }
                     return currElem.company === company;
                 });
-                if (tempFilterProduct.length === 0) {
-                    temp_product_number = true;
-                }
+            }
+            if (color !== "All") {
+                tempFilterProduct = tempFilterProduct.filter((currElem) => {
+                    return currElem.colors.includes(color)
+                });
             }
 
             return {
                 ...state,
                 filter_products: tempFilterProduct,
-                no_products: temp_product_number,
                 active_category: active_category
             }
 

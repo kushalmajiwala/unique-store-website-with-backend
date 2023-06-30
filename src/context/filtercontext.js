@@ -11,8 +11,10 @@ const initialState = {
     sorting_value: "",
     filters: {
         text: "",
+        category: "All",
+        company: "All",
+        color: "All"
     },
-    no_products: false,
     active_category: "All",
 }
 
