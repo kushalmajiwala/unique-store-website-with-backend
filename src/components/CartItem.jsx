@@ -44,7 +44,7 @@ const CartItem = ({ id, name, image, color, price, amount }) => {
                     </div>
                 </div>
                 <div className='flex justify-center w-1/3 md:w-1/5'>
-                    <div>
+                    <div className='mt-1'>
                         <i className="bi bi-trash-fill text-red-500 text-xl cursor-pointer"></i>
                     </div>
                 </div>
