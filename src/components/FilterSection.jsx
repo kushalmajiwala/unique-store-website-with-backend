@@ -1,9 +1,10 @@
 import React from 'react'
 import { useFilterContext } from '../context/filtercontext'
+import FormatPrice from '../helpers/FormatPrice'
 
 const FilterSection = () => {
 
-  const { filters: { text, color }, all_products, updateFilterValue, active_category } = useFilterContext();
+  const { filters: { text, color, price, maxPrice, minPrice }, all_products, updateFilterValue, clearFilters, active_category } = useFilterContext();
 
   const getUniqueData = (data, property) => {
     let newVal = data.map((currElem) => {
@@ -78,6 +79,22 @@ const FilterSection = () => {
               })
             }
           </div>
+        </div>
+      </div>
+      <div className='flex justify-start mt-5'>
+        <div>
+          <h4>Price</h4>
+          <div className='mt-4'>
+            <p className='block'>
+              <FormatPrice price={price} /><br/>
+              <input type="range" name="price" min={minPrice} max={maxPrice} className="cursor-pointer" value={price} onChange={updateFilterValue}/>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className='flex justify-start mt-4'>
+        <div>
+          <button className='text-center w-44 bg-orange-600 p-3 text-md text-white hover:bg-orange-500' onClick={clearFilters}>CLEAR FILTERS</button>
         </div>
       </div>
     </>

@@ -9,8 +9,8 @@ const ProductList = () => {
     if (filter_products.length === 0) {
         return (
             <>
-                <div className='flex justify-center items-center w-full h-96'>
-                    <div>
+                <div className='flex justify-center items-center  w-full h-96'>
+                    <div className=''>
                         <p className=' text-gray-700 text-xl'>No Products Available!!!</p>
                     </div>
                 </div>

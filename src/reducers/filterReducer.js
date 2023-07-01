@@ -1,10 +1,14 @@
 const filterReducer = (state, action) => {
     switch (action.type) {
         case "LOAD_FILTER_PRODUCTS":
+            let priceArr = action.payload.map((curElem) => curElem.price);
+            let maxPrice = Math.max(...priceArr);
+
             return {
                 ...state,
                 filter_products: [...action.payload],
-                all_products: [...action.payload]
+                all_products: [...action.payload],
+                filters: { ...state.filters, maxPrice: maxPrice, price: maxPrice }
             }
         case "SET_GRID_VIEW":
             return {
@@ -64,7 +68,7 @@ const filterReducer = (state, action) => {
             let { all_products } = state;
             let tempFilterProduct = [...all_products];
 
-            const { text, category, company, color } = state.filters;
+            const { text, category, company, color, price } = state.filters;
 
             let active_category = "All";
 
@@ -93,12 +97,39 @@ const filterReducer = (state, action) => {
                     return currElem.colors.includes(color)
                 });
             }
+            if (price === 0) {
+                tempFilterProduct = tempFilterProduct.filter((currElem) => {
+                    return currElem.price === price;
+                });
+            }
+            else {
+                tempFilterProduct = tempFilterProduct.filter((currElem) => {
+                    return currElem.price <= price;
+                });
+            }
 
             return {
                 ...state,
                 filter_products: tempFilterProduct,
                 active_category: active_category
             }
+
+            case "CLEAR_FILTERS":
+                let priceCompleteArr = action.payload.map((curElem) => curElem.price);
+                let maximumPrice = Math.max(...priceCompleteArr);
+                return {
+                    ...state,
+                    filters: {
+                        ...state.filters,
+                        text: "",
+                        category: "All",
+                        company: "All",
+                        color: "All",
+                        maxPrice: maximumPrice,
+                        price: state.filters.maxPrice,
+                        minPrice: 0
+                    }
+                }
 
         default:
             return state;

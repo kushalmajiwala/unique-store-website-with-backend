@@ -7,12 +7,12 @@ const Products = () => {
     return (
         <>
             <div className='flex justify-center'>
-                <div className='flex w-11/12'>
-                    <div className='w-2/6 hidden md:block'>
+                <div className='w-5/6 md:flex md:w-11/12'>
+                    <div className='w-2/6 md:block'>
                         <FilterSection />
                     </div>
-                    <div className='w-full'>
-                        <div>
+                    <div className='w-full pt-3'>
+                        <div className='md:-mt-3'>
                             <Sort />
                         </div>
                         <div className='w-full'>

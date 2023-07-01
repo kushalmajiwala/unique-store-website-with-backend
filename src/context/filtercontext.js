@@ -13,7 +13,10 @@ const initialState = {
         text: "",
         category: "All",
         company: "All",
-        color: "All"
+        color: "All",
+        maxPrice: 0,
+        price: 0,
+        minPrice: 0
     },
     active_category: "All",
 }
@@ -42,6 +45,10 @@ export const FilterContextProvider = ({ children }) => {
 
         return dispatch({ type: "UPDATE_FILTERS_VALUES", payload: { name, value } })
     }
+    const clearFilters = () => {
+        document.getElementById('company').selectedIndex = 0;
+        dispatch({ type: "CLEAR_FILTERS", payload: products })
+    }
 
     useEffect(() => {  
         dispatch({ type: "FILTER_PRODUCTS" }); 
@@ -53,7 +60,7 @@ export const FilterContextProvider = ({ children }) => {
     }, [products]);
 
     return (
-        <FilterContext.Provider value={{ ...state, setGridView, setListView, sorting, updateFilterValue }}>
+        <FilterContext.Provider value={{ ...state, setGridView, setListView, sorting, updateFilterValue, clearFilters }}>
             {children}
         </FilterContext.Provider>
     )
