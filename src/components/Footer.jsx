@@ -11,7 +11,7 @@ const Footer = () => {
                         <h6 className='text-center'>Talk to us today</h6>
                     </div>
                     <div className='mt-3 flex justify-center items-center'>
-                        <NavLink to='/contact' className='no-underline text-white bg-blue-500 rounded-md py-2 px-4 md:-mt-3'>GET STARTED</NavLink>
+                        <NavLink to='/contact' className='no-underline text-white bg-blue-600 hover:bg-blue-500 rounded-md py-2 px-4 md:-mt-3'>GET STARTED</NavLink>
                     </div>
                 </div>
             </div>

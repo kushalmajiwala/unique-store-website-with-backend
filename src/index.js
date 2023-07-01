@@ -8,14 +8,17 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import { AppProvider } from './context/productcontext';
 import { FilterContextProvider } from './context/filtercontext';
+import { CartProvider } from './context/cart_context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AppProvider>
     <FilterContextProvider>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
+      <CartProvider>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </CartProvider>
     </FilterContextProvider>
   </AppProvider>
 );

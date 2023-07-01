@@ -2,8 +2,11 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Badge } from 'primereact/badge';
 import { useState } from 'react';
+import { useCartContext } from '../context/cart_context';
 
 const Nav = () => {
+
+    const { total_item } = useCartContext();
 
     const [navVisibility, setNavVisibility] = useState('hidden');
     const [showMenuBtn, setShowMenuBtn] = useState('');
@@ -36,12 +39,14 @@ const Nav = () => {
                         <NavLink to='/contact' className='no-underline text-gray-500 opacity-100'>CONTACT</NavLink>
                     </li>
                     <li className='p-2 w-32 text-center px-4 mt-2'>
-                        <NavLink to='/contact' className='no-underline text-white bg-blue-500 rounded-md py-2 px-4'>LOGIN</NavLink>
+                        <NavLink to='/contact' className='no-underline text-white bg-blue-600 hover:bg-blue-500 rounded-md py-2 px-4'>LOGIN</NavLink>
                     </li>
                     <li className='p-2 w-32 text-center px-4 mt-2'>
-                        <i className="bi bi-cart p-overlay-badge text-3xl cursor-pointer text-gray-500 opacity-100 hover:text-black">
-                            <Badge value="0" severity="danger"></Badge>
-                        </i>
+                        <NavLink to="/cart">
+                            <i className="bi bi-cart p-overlay-badge text-3xl cursor-pointer text-gray-500 opacity-100 hover:text-black">
+                                <Badge value={total_item} severity="danger"></Badge>
+                            </i>
+                        </NavLink>
                     </li>
                 </ul>
                 <div className=''>
@@ -66,12 +71,14 @@ const Nav = () => {
                                 <NavLink to='/contact' className='no-underline text-gray-500 opacity-100' onClick={updateNavVisibility}>CONTACT</NavLink>
                             </li>
                             <li className='p-3 mt-2'>
-                                <NavLink to='/contact' className='no-underline text-white bg-blue-500 rounded-md py-2 px-4'  onClick={updateNavVisibility}>LOGIN</NavLink>
+                                <NavLink to='/contact' className='no-underline text-white bg-blue-600 hover:bg-blue-500 rounded-md py-2 px-4' onClick={updateNavVisibility}>LOGIN</NavLink>
                             </li>
                             <li className='p-3 mt-2'>
-                                <i className="bi bi-cart p-overlay-badge text-3xl cursor-pointer text-gray-500 opacity-100" onClick={updateNavVisibility}>
-                                    <Badge value="0" severity="danger"></Badge>
-                                </i>
+                                <NavLink to="/cart">
+                                    <i className="bi bi-cart p-overlay-badge text-3xl cursor-pointer text-gray-500 opacity-100" onClick={updateNavVisibility}>
+                                        <Badge value={total_item} severity="danger"></Badge>
+                                    </i>
+                                </NavLink>
                             </li>
                         </ul>
                     </div>
