@@ -38,7 +38,7 @@ const Cart = () => {
                             })
                         }
                     </div>
-                    <div className='w-full flex justify-between mt-3'>
+                    <div className='w-full flex justify-between mt-3 px-2'>
                         <NavLink to="/products">                       
                              <button className='px-3 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-sm'>CONTINUE SHOPPING</button>
                         </NavLink>
