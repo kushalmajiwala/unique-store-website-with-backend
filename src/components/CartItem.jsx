@@ -1,4 +1,5 @@
 import React from 'react'
+import { useCartContext } from '../context/cart_context'
 import FormatPrice from '../helpers/FormatPrice'
 import CartAmountToggle from './CartAmountToggle'
 
@@ -9,6 +10,7 @@ const CartItem = ({ id, name, image, color, price, amount }) => {
     const setIncrease = () => {
         // amount < stock ? setAmount(amount + 1) : setAmount(stock);
     }
+    const { removeItem } = useCartContext();
     return (
         <>
             <div className='flex pt-4 w-full'>
@@ -45,7 +47,7 @@ const CartItem = ({ id, name, image, color, price, amount }) => {
                 </div>
                 <div className='flex justify-center w-1/3 md:w-1/5'>
                     <div className='mt-1'>
-                        <i className="bi bi-trash-fill text-red-500 text-xl cursor-pointer"></i>
+                        <i className="bi bi-trash-fill text-red-500 hover:text-red-700 text-xl cursor-pointer" onClick={() => removeItem(id)}></i>
                     </div>
                 </div>
             </div>

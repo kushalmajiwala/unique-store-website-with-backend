@@ -17,7 +17,7 @@ const HeroSection = ({ myData }) => {
                             All the products prices are affordable for the middle class
                             people.
                         </p>
-                        <NavLink to='/products' className='no-underline shadow-sm text-white bg-blue-500 rounded-md py-2 px-4 ml-5'>SHOP NOW</NavLink>
+                        <NavLink to='/products' className='no-underline shadow-sm text-white bg-blue-600 hover:bg-blue-500 rounded-md py-2 px-4 ml-5'>SHOP NOW</NavLink>
                     </div>
                     <div className='ml-5 pr-5 flex justify-center'>
                         {/* eslint-disable-next-line */}

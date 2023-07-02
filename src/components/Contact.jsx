@@ -16,7 +16,7 @@ const Contact = () => {
                         <input type='text' placeholder='Username' name='Username' required autoComplete='off' className=' border-1 border-blue-300 w-full h-8 pl-2'/><br/><br/>
                         <input type='email' placeholder='Email' name='Email' autoComplete='off' required  className=' border-1 border-blue-300 w-full h-8 pl-2'/><br/><br/>
                         <textarea name='Message' cols="30" rows="10" required autoComplete="off" placeholder="Enter your Message" className=' border-1 border-blue-300 w-full pl-2'></textarea><br/><br/>
-                        <input type="submit" value="SEND" className='w-36 h-10 text-white text-lg bg-blue-500 rounded-xl hover:bg-blue-600' />
+                        <input type="submit" value="SEND" className='w-36 h-10 text-white text-lg rounded-xl bg-blue-600 hover:bg-blue-500' />
                     </form>
                 </div>
             </div>

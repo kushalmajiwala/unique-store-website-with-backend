@@ -24,7 +24,7 @@ const Footer = () => {
                     <div className='text-white -mt-12 md:-mt-0 md:w-1/4 text-sm p-10'>
                         <p>Subscribe to get important updates</p>
                         <input placeholder="YOUR E-MAIl" className='p-2'></input><br /><br />
-                        <NavLink to='/' className='no-underline text-white bg-blue-500 rounded-md py-2 px-4'>SUBSCRIBE</NavLink>
+                        <NavLink to='/' className='no-underline text-white bg-blue-600 hover:bg-blue-500 rounded-md py-2 px-4'>SUBSCRIBE</NavLink>
                     </div>
                     <div className='text-white -mt-10 md:-mt-0 md:w-1/4 text-sm p-10 text-justify'>
                         <p>follow us</p>
