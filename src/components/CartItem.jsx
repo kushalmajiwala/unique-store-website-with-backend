@@ -4,13 +4,9 @@ import FormatPrice from '../helpers/FormatPrice'
 import CartAmountToggle from './CartAmountToggle'
 
 const CartItem = ({ id, name, image, color, price, amount }) => {
-    const setDecrease = () => {
-        // amount > 1 ? setAmount(amount - 1) : setAmount(1);
-    }
-    const setIncrease = () => {
-        // amount < stock ? setAmount(amount + 1) : setAmount(stock);
-    }
-    const { removeItem } = useCartContext();
+
+    const { removeItem, setDecrease, setIncrease } = useCartContext();
+    
     return (
         <>
             <div className='flex pt-4 w-full'>
@@ -37,7 +33,7 @@ const CartItem = ({ id, name, image, color, price, amount }) => {
                 </div>
                 <div className='flex justify-center w-1/3  md:w-1/5'>
                     <div className='flex justify-center'>
-                        <CartAmountToggle amount={amount} setDecrease={setDecrease} setIncrease={setIncrease} />
+                        <CartAmountToggle amount={amount} setDecrease={() => setDecrease(id)} setIncrease={() => setIncrease(id)} />
                     </div>
                 </div>
                 <div className='hidden md:block w-1/3 md:w-1/5'>
