@@ -3,11 +3,13 @@ import { useCartContext } from '../context/cart_context'
 import CartItem from './CartItem';
 import { NavLink } from 'react-router-dom'
 import FormatPrice from '../helpers/FormatPrice';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Cart = () => {
     const { cart, total_item, clearCart, total_price, shipping_fees } = useCartContext();
+    const { isAuthenticated} = useAuth0();
 
-    if (total_item === 0) {
+    if (total_item === 0 || isAuthenticated === false) {
         return (
             <div className='flex justify-center'>
                 <div className='pt-14 pb-2'>

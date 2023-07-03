@@ -1,6 +1,9 @@
 import React from 'react'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Contact = () => {
+    const { user, isAuthenticated } = useAuth0();
+
     return (
         <>
             <div className='flex justify-center py-10'>
@@ -13,8 +16,8 @@ const Contact = () => {
             <div className='flex justify-center py-10'>
                 <div className=' w-5/6 md:w-2/6'>
                     <form action='https://formspree.io/f/mjvqbvvl' method='POST'>
-                        <input type='text' placeholder='Username' name='Username' required autoComplete='off' className=' border-1 border-blue-300 w-full h-8 pl-2'/><br/><br/>
-                        <input type='email' placeholder='Email' name='Email' autoComplete='off' required  className=' border-1 border-blue-300 w-full h-8 pl-2'/><br/><br/>
+                        <input type='text' placeholder='Username' value={isAuthenticated ? user.name : ""} name='Username' required autoComplete='off' className=' border-1 border-blue-300 w-full h-8 pl-2'/><br/><br/>
+                        <input type='email' placeholder='Email' value={isAuthenticated ? user.email : ""} name='Email' autoComplete='off' required  className=' border-1 border-blue-300 w-full h-8 pl-2'/><br/><br/>
                         <textarea name='Message' cols="30" rows="10" required autoComplete="off" placeholder="Enter your Message" className=' border-1 border-blue-300 w-full pl-2'></textarea><br/><br/>
                         <input type="submit" value="SEND" className='w-36 h-10 text-white text-lg rounded-xl bg-blue-600 hover:bg-blue-500' />
                     </form>

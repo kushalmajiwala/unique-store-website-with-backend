@@ -3,9 +3,11 @@ import { useState } from 'react';
 import CartAmountToggle from './CartAmountToggle';
 import { NavLink } from 'react-router-dom'
 import { useCartContext } from '../context/cart_context';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const AddToCart = ({ product }) => {
     const { addToCart } = useCartContext();
+    const { isAuthenticated, loginWithRedirect } = useAuth0();
 
     const { id, colors, stock } = product;
     const [color, setColor] = useState(colors[0]);
@@ -16,6 +18,18 @@ const AddToCart = ({ product }) => {
     }
     const setIncrease = () => {
         amount < stock ? setAmount(amount + 1) : setAmount(stock);
+    }
+
+    const addToCartOuter = () => {
+        if(isAuthenticated)
+        {
+            addToCart(id, color, amount, product);
+        }
+        else
+        {
+            loginWithRedirect();
+            addToCart(id, color, amount, product);
+        }
     }
 
     return (
@@ -40,7 +54,7 @@ const AddToCart = ({ product }) => {
                 <CartAmountToggle amount={amount} setDecrease={setDecrease} setIncrease={setIncrease} />
             </div>
             <div className='mt-4'>
-                <NavLink to='/cart' onClick={() => addToCart(id, color, amount, product)} className='no-underline text-white bg-blue-600 hover:bg-blue-500 rounded-md py-2 px-4'>ADD TO CART</NavLink>
+                <NavLink to={isAuthenticated ? "/cart" : ""}  onClick={addToCartOuter} className='no-underline text-white bg-blue-600 hover:bg-blue-500 rounded-md py-2 px-4'>ADD TO CART</NavLink>
             </div>
         </>
     )
