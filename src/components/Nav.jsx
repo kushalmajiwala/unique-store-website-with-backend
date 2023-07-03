@@ -116,7 +116,7 @@ const Nav = () => {
                             <li className='p-3 mt-2'>
                                 <NavLink to="/cart">
                                     <i className="bi bi-cart p-overlay-badge text-3xl cursor-pointer text-gray-500 opacity-100" onClick={updateNavVisibility}>
-                                        <Badge value={total_item} severity="danger"></Badge>
+                                        {isAuthenticated && <Badge value={total_item} severity="danger"></Badge>}
                                     </i>
                                 </NavLink>
                             </li>
