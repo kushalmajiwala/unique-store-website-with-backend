@@ -28,7 +28,6 @@ const AddToCart = ({ product }) => {
         else
         {
             loginWithRedirect();
-            addToCart(id, color, amount, product);
         }
     }
 
