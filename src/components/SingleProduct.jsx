@@ -9,7 +9,9 @@ import FormatPrice from '../helpers/FormatPrice';
 import Star from './Star';
 import AddToCart from './AddToCart';
 
-const API = "https://api.pujakaitem.com/api/products";
+// const API = "https://api.pujakaitem.com/api/products";
+
+const API = "https://ngaxtqtjphtkyssalygr.supabase.co/rest/v1/single_product?id=eq.";
 
 const SingleProduct = () => {
 
@@ -31,7 +33,7 @@ const SingleProduct = () => {
     } = singleProduct;
 
     useEffect(() => {
-        getSingleProduct(`${API}?id=${id}`);
+        getSingleProduct(`${API}${id}&select=*`);
     }, [])
 
     if (isSingleLoading) {
