@@ -1,56 +1,99 @@
-import { createContext, useContext, useReducer, useEffect } from "react";
-import reducer from '../reducers/cartReducer';
+import { createContext, useContext, useEffect, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import supabase from "../helpers/supabase_setup";
 
 const CartContext = createContext();
 
-const getLocalCartData = () => {
-    let localCartData = localStorage.getItem("cartItems");
-    if(localCartData === [] || localCartData === null)
-    {
-        return [];
-    }
-    else
-    {
-        return JSON.parse(localCartData);
-    }
-}
-
-const initialState = {
-    cart: getLocalCartData(),
-    total_item: getLocalCartData().length,
-    total_price: 0,
-    shipping_fees: 50000
-};
-
 const CartProvider = ({ children }) => {
 
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const { isAuthenticated, loginWithRedirect, user } = useAuth0();
 
-    const addToCart = (id, color, amount, product) => {
-        dispatch({ type: "ADD_TO_CART", payload: { id, color, amount, product } })
+    const getAllCartData = async () => {
+        if (isAuthenticated) {
+            let { data } = await supabase.from('cart').select("*").eq("email", user.email);
+            console.log(data);
+            if (data) {
+                let ptotal = 0;
+                let titem = 0;
+                data.map((curElem) => {
+                    ptotal = ptotal + curElem.price * curElem.amount
+                    titem = titem + curElem.amount
+                })
+                setState({ ...state, cart: data, total_item: titem, total_price: ptotal });
+            }
+        }
     }
 
-    const setDecrease = (id) =>{
-        dispatch({ type: "SET_DECREMENT", payload: id });
+    const initialState = {
+        cart: [],
+        total_item: 0,
+        total_price: 0,
+        shipping_fees: 50000
+    };
+
+    const [state, setState] = useState(initialState);
+
+    const addToCart = async (id, color, amount, product) => {
+        if (isAuthenticated) {
+            const insert_data = {
+                id: id + color,
+                email: user.email,
+                amount: amount,
+                color: color,
+                image: product.image[0].url,
+                max: product.stock,
+                name: product.name,
+                price: product.price
+            }
+            const { error } = await supabase
+                .from('cart')
+                .insert(insert_data)
+                .select()
+            if (error) console.log(error);
+            getAllCartData();
+        }
+    }
+    const removeItem = async (id) => {
+        const { error } = await supabase
+            .from('cart')
+            .delete()
+            .eq('id', id);
+        if (error) console.log(error);
+        getAllCartData();
+    }
+    const clearCart = async () => {
+        const { error } = await supabase
+            .from('cart')
+            .delete()
+            .eq("email", user.email);
+        if (error) console.log(error);
+        getAllCartData();
     }
 
-    const setIncrease = (id) => {
-        dispatch({ type: "SET_INCREMENT", payload: id });
+    const setIncrease = async (id, amount, max) => {
+        if (amount < max) {
+            const { error } = await supabase
+                .from('cart')
+                .update({ amount: amount + 1 })
+                .eq('id', id);
+            if (error) console.log(error);
+            getAllCartData();
+        }
     }
-
-    const removeItem = (id) => {
-        dispatch({ type: "REMOVE_ITEM", payload: id });
-    }
-
-    const clearCart = () => {
-        dispatch({ type: "CLEAR_CART" });
+    const setDecrease = async (id, amount) => {
+        if (amount > 1) {
+            const { error } = await supabase
+                .from('cart')
+                .update({ amount: amount - 1 })
+                .eq('id', id);
+            if (error) console.log(error);
+            getAllCartData();
+        }
     }
 
     useEffect(() => {
-        dispatch({ type: "CART_TOTAL_PRICE" });
-        dispatch({ type: "CART_TOTAL_ITEM" });
-        localStorage.setItem("cartItems", JSON.stringify(state.cart));
-    }, [state.cart]);
+        getAllCartData();
+    }, [isAuthenticated]);
 
     return (
         <CartContext.Provider value={{ ...state, addToCart, removeItem, clearCart, setDecrease, setIncrease }}>

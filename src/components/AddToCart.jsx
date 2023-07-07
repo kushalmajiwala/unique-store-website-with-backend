@@ -7,7 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const AddToCart = ({ product }) => {
     const { addToCart } = useCartContext();
-    const { isAuthenticated, loginWithRedirect } = useAuth0();
+    const { isAuthenticated, loginWithRedirect, user } = useAuth0();
 
     const { id, colors, stock } = product;
     const [color, setColor] = useState(colors[0]);
@@ -20,13 +20,11 @@ const AddToCart = ({ product }) => {
         amount < stock ? setAmount(amount + 1) : setAmount(stock);
     }
 
-    const addToCartOuter = () => {
-        if(isAuthenticated)
-        {
+    const addToCartOuter = async () => {
+        if (isAuthenticated) {
             addToCart(id, color, amount, product);
         }
-        else
-        {
+        else {
             loginWithRedirect();
         }
     }
@@ -53,7 +51,7 @@ const AddToCart = ({ product }) => {
                 <CartAmountToggle amount={amount} setDecrease={setDecrease} setIncrease={setIncrease} />
             </div>
             <div className='mt-4'>
-                <NavLink to={isAuthenticated ? "/cart" : ""}  onClick={addToCartOuter} className='no-underline text-white bg-blue-600 hover:bg-blue-500 rounded-md py-2 px-4'>ADD TO CART</NavLink>
+                <NavLink to={isAuthenticated ? "/cart" : ""} onClick={addToCartOuter} className='no-underline text-white bg-blue-600 hover:bg-blue-500 rounded-md py-2 px-4'>ADD TO CART</NavLink>
             </div>
         </>
     )

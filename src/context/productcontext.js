@@ -35,14 +35,13 @@ const AppProvider = ({ children }) => {
             dispatch({ type: "SET_API_DATA", payload: products });
         } catch (error) {
             dispatch({ type: "API_ERROR", });
-        }
+        }   
     }
 
     //Getting Single Products
     const getSingleProduct = async (url) => {
         dispatch({ type: "SET_SINGLE_LOADING", });
         try {
-            console.log(url);
             const res = await axios.get(url, {
                 headers: {
                     apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5nYXh0cXRqcGh0a3lzc2FseWdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODgzODYyODMsImV4cCI6MjAwMzk2MjI4M30.lybay5FxL2drIz-HanSx-JLvxJZhBmiDHM_sKP3MME0",

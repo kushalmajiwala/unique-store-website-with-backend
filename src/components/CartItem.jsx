@@ -2,11 +2,14 @@ import React from 'react'
 import { useCartContext } from '../context/cart_context'
 import FormatPrice from '../helpers/FormatPrice'
 import CartAmountToggle from './CartAmountToggle'
+import supabase from "../helpers/supabase_setup";
+import { useEffect } from 'react';
+import { useState } from 'react';
 
-const CartItem = ({ id, name, image, color, price, amount }) => {
+const CartItem = ({ id, email, name, image, color, price, amount, max }) => {
 
     const { removeItem, setDecrease, setIncrease } = useCartContext();
-    
+
     return (
         <>
             <div className='flex pt-4 w-full'>
@@ -33,7 +36,7 @@ const CartItem = ({ id, name, image, color, price, amount }) => {
                 </div>
                 <div className='flex justify-center w-1/3  md:w-1/5'>
                     <div className='flex justify-center'>
-                        <CartAmountToggle amount={amount} setDecrease={() => setDecrease(id)} setIncrease={() => setIncrease(id)} />
+                        <CartAmountToggle amount={amount} setDecrease={() => setDecrease(id, amount)} setIncrease={() => setIncrease(id, amount, max)} />
                     </div>
                 </div>
                 <div className='hidden md:block w-1/3 md:w-1/5'>

@@ -3,28 +3,18 @@ import { NavLink } from 'react-router-dom'
 import { Badge } from 'primereact/badge';
 import { useState } from 'react';
 import { useCartContext } from '../context/cart_context';
-// import { createClient } from '@supabase/supabase-js';
 import { useAuth0 } from "@auth0/auth0-react";
-
+import supabase from "../helpers/supabase_setup";
+import { useEffect } from 'react';
 
 const Nav = () => {
-    // const SUPABASE_URL = 'https://ngaxtqtjphtkyssalygr.supabase.co';
-    // const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5nYXh0cXRqcGh0a3lzc2FseWdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODgzODYyODMsImV4cCI6MjAwMzk2MjI4M30.lybay5FxL2drIz-HanSx-JLvxJZhBmiDHM_sKP3MME0';
-
-    // const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-
     const { total_item } = useCartContext();
-
     const [navVisibility, setNavVisibility] = useState('hidden');
     const [showMenuBtn, setShowMenuBtn] = useState('');
 
     const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
 
     const loginWithGoogle = () => {
-        // const { data, error } = await supabase.auth.signInWithOAuth({
-        //     provider: 'google',
-        // })
-        // if (error) console.log(error);
         loginWithRedirect();
         console.log('hello');
     }
