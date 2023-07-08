@@ -28,10 +28,18 @@ const CartProvider = ({ children }) => {
         cart: [],
         total_item: 0,
         total_price: 0,
-        shipping_fees: 50000
+        shipping_fees: 50000,
+        addr: "",
+        pay_method: ""
     };
 
+    const initialUserData = {
+        addr: "",
+        pay_method: ""
+    }
+
     const [state, setState] = useState(initialState);
+    const [userDetails, setUserDetails] = useState(initialUserData);
 
     const addToCart = async (id, color, amount, product) => {
         if (isAuthenticated) {
@@ -90,13 +98,59 @@ const CartProvider = ({ children }) => {
             getAllCartData();
         }
     }
+    const addUserDetails = async (e, a, p) => {
+
+        const insert_data = {
+            email: e,
+            address: a,
+            payment_method: p
+        }
+
+        let { data, err } = await supabase
+            .from('user_details')
+            .select('*')
+            .eq("email", e)
+
+        if (data.length > 0) {
+            console.log(data);
+            const { err } = await supabase
+                .from('user_details')
+                .update({
+                    address: a,
+                    payment_method: p
+                })
+                .eq("email", e)
+            if (err) console.log(err);
+        }
+        else {
+            console.log(e);
+            const { error } = await supabase
+                .from('user_details')
+                .insert(insert_data)
+            if (error) console.log(error);
+        }
+    }
+
+    const getUserDetails = async () => {
+        if (isAuthenticated) {
+            let { data, error } = await supabase
+                .from('user_details')
+                .select('*')
+                .eq("email", user.email)
+
+            if (data.length > 0) {
+                setUserDetails({addr: data[0].address, pay_method: data[0].payment_method})
+            }
+        }
+    }
 
     useEffect(() => {
+        getUserDetails();
         getAllCartData();
     }, [isAuthenticated]);
 
     return (
-        <CartContext.Provider value={{ ...state, addToCart, removeItem, clearCart, setDecrease, setIncrease }}>
+        <CartContext.Provider value={{ ...state, ...userDetails, addToCart, removeItem, clearCart, setDecrease, setIncrease, addUserDetails, getUserDetails }}>
             {children}
         </CartContext.Provider>
     )

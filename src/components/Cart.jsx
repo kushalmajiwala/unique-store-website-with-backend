@@ -4,12 +4,48 @@ import CartItem from './CartItem';
 import { NavLink } from 'react-router-dom'
 import FormatPrice from '../helpers/FormatPrice';
 import { useAuth0 } from "@auth0/auth0-react";
-import supabase from "../helpers/supabase_setup";
+import { Dialog } from 'primereact/dialog';
+import { RadioButton } from 'primereact/radiobutton';
 
 const Cart = () => {
-    const { cart, total_item, clearCart, total_price, shipping_fees } = useCartContext();
-    const { isAuthenticated } = useAuth0();
-    
+    const { cart, total_item, clearCart, total_price, shipping_fees, addUserDetails, addr, pay_method, getUserDetails } = useCartContext();
+    const { isAuthenticated, user } = useAuth0();
+    const [visible, setVisible] = useState(false);
+    const [payment_method, setPayment_method] = useState("cash");
+    const [address, setAddress] = useState("");
+    const [details, setDetails] = useState(false);
+
+    const saveDetails = () => {
+        addUserDetails(user.email, address, payment_method);
+        setDetails(true);
+    }
+
+    const openDetailsDialog = () => {
+        console.log(addr);
+        console.log(pay_method);
+        setAddress(addr);
+        setPayment_method(pay_method);
+        setVisible(true);
+    }
+
+    useEffect(() => {
+        getUserDetails();
+        // setAddress(addr);
+        // setPayment_method(pay_method);
+    }, [visible])
+
+    const footerContent = (
+        <div className='flex justify-between h-16 items-center'>
+            <div className='pt-4'>
+                <button className='md:font-medium text-white whitespace-nowrap px-3 py-2 bg-green-600 hover:bg-green-500' onClick={() => saveDetails()}>SAVE DETAILS</button>
+            </div>
+            <div className='text-right pt-4 flex'>
+                <button className={payment_method === "online" ? `md:font-medium whitespace-nowrap text-white px-3 md:px-3 py-2 bg-blue-600 hover:bg-blue-500` : `md:font-medium text-white whitespace-nowrap px-3 md:px-3 py-2 cursor-not-allowed bg-blue-300`} disabled={payment_method === "online" ? false : true}>PAY NOW</button>
+                <button className='md:font-medium text-white hidden md:block px-3 py-2 bg-red-600 whitespace-nowrap hover:bg-red-500' onClick={() => setVisible(false)}>CLOSE</button>
+            </div>
+        </div>
+    );
+
     if (total_item === 0 || isAuthenticated === false) {
         return (
             <div className='flex justify-center'>
@@ -72,6 +108,42 @@ const Cart = () => {
                                 <p className='mt-3 font-bold w-24 text-right'>
                                     <FormatPrice price={shipping_fees + total_price} />
                                 </p>
+                            </div>
+                            <div className='flex justify-center'>
+                                <div className='py-2 px-2 w-full'>
+                                    <button className='bg-yellow-300 w-full py-2 font-bold rounded-lg hover:bg-yellow-400 hover:scale-105' onClick={() => openDetailsDialog()}>PROCEED TO BUY</button>
+                                </div>
+                            </div>
+                            <div className="">
+                                <Dialog header="CHECKOUT STEPS" draggable={false} visible={visible} onHide={() => setVisible(false)}
+                                    className="w-11/12 md:w-2/3" footer={footerContent}>
+                                    <div>
+                                        <p className='font-bold text-lg text-orange-700'>1. Add a Delivery Address</p>
+                                        <textarea className='border-2 ml-5 w-5/6 md:w-11/12 h-36 pl-2' value={address} onChange={(e) => setAddress(e.target.value)}></textarea>
+
+                                        <p className='font-bold text-lg text-orange-700 mt-2'>2. Select a Payment Method</p>
+                                        <div className='pl-5 md:flex'>
+                                            <div>
+                                                <RadioButton name="pizza" value="cash" onChange={(e) => setPayment_method(e.value)} checked={payment_method === 'cash'} />
+                                                <label htmlFor="ingredient3" className="ml-2">Cash on Delivery</label>
+                                            </div>
+                                            <div>
+                                                <RadioButton name="pizza" value="online" onChange={(e) => setPayment_method(e.value)} checked={payment_method === 'online'} className='md:ml-10' />
+                                                <label htmlFor="ingredient3" className="ml-2">Pay Online</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Dialog>
+                                <Dialog visible={details} draggable={false} className="w-11/12 md:w-1/3" onHide={() => setDetails(false)}>
+                                    <div className='flex justify-center'>
+                                        <div className='text-center'>
+                                            <i className="bi bi-check-circle text-7xl text-green-500"></i>
+                                            <p className="font-bold text-lg mt-4">
+                                                Details Saved Successfully
+                                            </p>
+                                        </div>
+                                    </div>
+                                </Dialog>
                             </div>
                         </div>
                     </div>
