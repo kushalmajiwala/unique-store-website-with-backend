@@ -40,7 +40,8 @@ const Cart = () => {
                 <button className='md:font-medium text-white whitespace-nowrap px-3 py-2 bg-green-600 hover:bg-green-500' onClick={() => saveDetails()}>SAVE DETAILS</button>
             </div>
             <div className='text-right pt-4 flex'>
-                <button className={payment_method === "online" ? `md:font-medium whitespace-nowrap text-white px-3 md:px-3 py-2 bg-blue-600 hover:bg-blue-500` : `md:font-medium text-white whitespace-nowrap px-3 md:px-3 py-2 cursor-not-allowed bg-blue-300`} disabled={payment_method === "online" ? false : true}>PAY NOW</button>
+                <button className={payment_method === "cash" ? `md:font-medium whitespace-nowrap text-white px-3 md:px-3 py-2 bg-blue-600 hover:bg-blue-500` : `hidden`}>PLACE ORDER</button>
+                <button className={payment_method === "online" ? `md:font-medium whitespace-nowrap text-white px-3 md:px-3 py-2 bg-blue-600 hover:bg-blue-500` : `hidden`}>PAY NOW</button>
                 <button className='md:font-medium text-white hidden md:block px-3 py-2 bg-red-600 whitespace-nowrap hover:bg-red-500' onClick={() => setVisible(false)}>CLOSE</button>
             </div>
         </div>
@@ -118,6 +119,9 @@ const Cart = () => {
                                 <Dialog header="CHECKOUT STEPS" draggable={false} visible={visible} onHide={() => setVisible(false)}
                                     className="w-11/12 md:w-2/3" footer={footerContent}>
                                     <div>
+                                        <div>
+                                            <p className='font-bold text-lg text-orange-500'><span className='mr-3 text-black'>Order Total:</span> <FormatPrice price={total_price + shipping_fees} /></p>
+                                        </div>
                                         <p className='font-bold text-lg text-orange-700'>1. Add a Delivery Address</p>
                                         <textarea className='border-2 ml-5 w-5/6 md:w-11/12 h-36 pl-2' value={address} onChange={(e) => setAddress(e.target.value)}></textarea>
 
