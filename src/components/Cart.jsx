@@ -68,86 +68,94 @@ const Cart = () => {
 
     return (
         <>
-            <div className='flex justify-center'>
-                <div className='w-full md:w-3/4'>
-                    <div className='flex justify-around pt-5 border-b-2 w-full'>
-                        <p className='px-3 text-sm text-gray-600 w-1/3 md:w-1/5 text-center'>ITEM</p>
-                        <p className='px-3 text-sm text-gray-600 w-1/3 md:w-1/5 text-center hidden md:block'>PRICE</p>
-                        <p className='px-3 text-sm text-gray-600 w-1/3 md:w-1/5 text-center'>QUANTITY</p>
-                        <p className='px-3 text-sm text-gray-600 w-1/3 md:w-1/5 text-center hidden md:block'>SUBTOTAL</p>
-                        <p className='px-3 text-sm text-gray-600 w-1/3 md:w-1/5 text-center'>REMOVE</p>
-                    </div>
-                    <div className='border-b-2 pb-3 pt-2'>
-                        {
-                            cart.map((currElem) => {
-                                return <CartItem key={currElem.id} {...currElem} />
-                            })
-                        }
-                    </div>
-                    <div className='w-full flex justify-between mt-3 px-2'>
-                        <NavLink to="/products">
-                            <button className='px-3 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-sm'>CONTINUE SHOPPING</button>
-                        </NavLink>
-                        <button className='px-3 py-2.5 bg-orange-600 hover:bg-orange-500 text-white text-sm' onClick={clearCart}>CLEAR CART</button>
-                    </div>
-                    <div className='mt-4 px-2 flex justify-end items-center'>
-                        <div className='bg-gray-100 shadow-md px-4 py-3'>
-                            <div className='flex mt-3'>
-                                <p className='w-32'>Subtotal:</p>
-                                <p className='font-bold w-24 text-right'>
-                                    <FormatPrice price={total_price} />
-                                </p>
-                            </div>
-                            <div className='flex border-b-2 border-gray-300 pb-1'>
-                                <p className='w-32'>Shipping Fee:</p>
-                                <p className='font-bold w-24 text-right'>
-                                    <FormatPrice price={shipping_fees} />
-                                </p>
-                            </div>
-                            <div className='flex'>
-                                <p className='w-32 mt-3'>Order Total:</p>
-                                <p className='mt-3 font-bold w-24 text-right'>
-                                    <FormatPrice price={shipping_fees + total_price} />
-                                </p>
-                            </div>
-                            <div className='flex justify-center'>
-                                <div className='py-2 px-2 w-full'>
-                                    <button className='bg-yellow-300 w-full py-2 font-bold rounded-lg hover:bg-yellow-400 hover:scale-105' onClick={() => openDetailsDialog()}>PROCEED TO BUY</button>
+            <div>
+                <div className='flex justify-center h-full'>
+                    <div className='w-full md:w-full md:flex justify-around'>
+                        <div className='border-b-2 pb-3 pt-2 shadow-sm w-full md:w-2/3 mt-12 bg-gray-100'>
+                            <div className='p-3 flex justify-between items-center border-b-2'>
+                                <p className='text-3xl font-medium'>Shopping Cart</p>
+                                <div className='flex items-start py-2 h-12'>
+                                    <p className='text-xl'>Price</p>
                                 </div>
                             </div>
-                            <div className="">
-                                <Dialog header="CHECKOUT STEPS" draggable={false} visible={visible} onHide={() => setVisible(false)}
-                                    className="w-11/12 md:w-2/3" footer={footerContent}>
+                            {
+                                cart.map((currElem) => {
+                                    return <CartItem key={currElem.id} {...currElem} />
+                                })
+                            }
+                            <div className='md:flex md:pl-5'>
+                                <div className='md:w-2/3 md:justify-between flex justify-around mt-3 px-2'>
+                                    <NavLink to="/products">
+                                        <button className='px-3 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-sm'>CONTINUE SHOPPING</button>
+                                    </NavLink>
                                     <div>
+                                        <button className='px-3 py-2.5 bg-orange-600 hover:bg-orange-500 text-white text-sm' onClick={clearCart}>CLEAR CART</button>
+                                    </div>
+                                </div>
+                                <div className='flex w-full items-center h-16 justify-center md:justify-end pr-4'>
+                                    <span className='mr-2 text-xl'>Subtotal ({total_item} items) :- </span><span className='font-medium text-xl'><FormatPrice price={total_price} /></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='px-2 items-center w-72 mt-5'>
+                            <div className='bg-gray-100 shadow-md px-4 py-3'>
+                                <div className='flex mt-3'>
+                                    <p className='w-32'>Subtotal:</p>
+                                    <p className='font-bold w-24 text-right'>
+                                        <FormatPrice price={total_price} />
+                                    </p>
+                                </div>
+                                <div className='flex border-b-2 border-gray-300 pb-1'>
+                                    <p className='w-32'>Shipping Fee:</p>
+                                    <p className='font-bold w-24 text-right'>
+                                        <FormatPrice price={shipping_fees} />
+                                    </p>
+                                </div>
+                                <div className='flex'>
+                                    <p className='w-32 mt-3'>Order Total:</p>
+                                    <p className='mt-3 font-bold w-24 text-right'>
+                                        <FormatPrice price={shipping_fees + total_price} />
+                                    </p>
+                                </div>
+                                <div className='flex justify-center'>
+                                    <div className='py-2 px-2 w-full'>
+                                        <button className='bg-yellow-300 w-full py-2 font-bold rounded-lg hover:bg-yellow-400 hover:scale-105' onClick={() => openDetailsDialog()}>PROCEED TO BUY</button>
+                                    </div>
+                                </div>
+                                <div className="">
+                                    <Dialog header="CHECKOUT STEPS" draggable={false} visible={visible} onHide={() => setVisible(false)}
+                                        className="w-11/12 md:w-2/3" footer={footerContent}>
                                         <div>
-                                            <p className='font-bold text-lg text-orange-500'><span className='mr-3 text-black'>Order Total:</span> <FormatPrice price={total_price + shipping_fees} /></p>
-                                        </div>
-                                        <p className='font-bold text-lg text-orange-700'>1. Add a Delivery Address</p>
-                                        <textarea className='border-2 ml-5 w-5/6 md:w-11/12 h-36 pl-2' value={address} onChange={(e) => setAddress(e.target.value)}></textarea>
+                                            <div>
+                                                <p className='font-bold text-lg text-orange-500'><span className='mr-3 text-black'>Order Total:</span> <FormatPrice price={total_price + shipping_fees} /></p>
+                                            </div>
+                                            <p className='font-bold text-lg text-orange-700'>1. Add a Delivery Address</p>
+                                            <textarea className='border-2 ml-5 w-5/6 md:w-11/12 h-36 pl-2' value={address} onChange={(e) => setAddress(e.target.value)}></textarea>
 
-                                        <p className='font-bold text-lg text-orange-700 mt-2'>2. Select a Payment Method</p>
-                                        <div className='pl-5 md:flex'>
-                                            <div>
-                                                <RadioButton name="pizza" value="cash" onChange={(e) => setPayment_method(e.value)} checked={payment_method === 'cash'} />
-                                                <label htmlFor="ingredient3" className="ml-2">Cash on Delivery</label>
-                                            </div>
-                                            <div>
-                                                <RadioButton name="pizza" value="online" onChange={(e) => setPayment_method(e.value)} checked={payment_method === 'online'} className='md:ml-10' />
-                                                <label htmlFor="ingredient3" className="ml-2">Pay Online</label>
+                                            <p className='font-bold text-lg text-orange-700 mt-2'>2. Select a Payment Method</p>
+                                            <div className='pl-5 md:flex'>
+                                                <div>
+                                                    <RadioButton name="pizza" value="cash" onChange={(e) => setPayment_method(e.value)} checked={payment_method === 'cash'} />
+                                                    <label htmlFor="ingredient3" className="ml-2">Cash on Delivery</label>
+                                                </div>
+                                                <div>
+                                                    <RadioButton name="pizza" value="online" onChange={(e) => setPayment_method(e.value)} checked={payment_method === 'online'} className='md:ml-10' />
+                                                    <label htmlFor="ingredient3" className="ml-2">Pay Online</label>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </Dialog>
-                                <Dialog visible={details} draggable={false} className="w-11/12 md:w-1/3" onHide={() => setDetails(false)}>
-                                    <div className='flex justify-center'>
-                                        <div className='text-center'>
-                                            <i className="bi bi-check-circle text-7xl text-green-500"></i>
-                                            <p className="font-bold text-lg mt-4">
-                                                Details Saved Successfully
-                                            </p>
+                                    </Dialog>
+                                    <Dialog visible={details} draggable={false} className="w-11/12 md:w-1/3" onHide={() => setDetails(false)}>
+                                        <div className='flex justify-center'>
+                                            <div className='text-center'>
+                                                <i className="bi bi-check-circle text-7xl text-green-500"></i>
+                                                <p className="font-bold text-lg mt-4">
+                                                    Details Saved Successfully
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </Dialog>
+                                    </Dialog>
+                                </div>
                             </div>
                         </div>
                     </div>
