@@ -11,7 +11,7 @@ const CartItem = ({ uniqueid, id, email, name, image, color, price, amount, max 
     return (
         <>
             <div className='flex pt-4 w-full'>
-                <div className='md:flex justify-start pl-3 md:pl-7 border-b-2 w-2/3 py-3'>
+                <div className='md:flex justify-start pl-3 md:pl-10 border-b-2 w-2/3 py-3'>
                     <figure>
                         <img src={image} alt={id} className=" w-56 h-52 md:w-60 md:h-56" />
                     </figure>

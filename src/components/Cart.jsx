@@ -124,8 +124,8 @@ const Cart = () => {
         <>
             <div>
                 <div className='flex justify-center h-full'>
-                    <div className='w-full md:w-full md:flex justify-around'>
-                        <div className='border-b-2 pb-3 pt-2 shadow-sm w-full md:w-2/3 mt-12 bg-gray-100'>
+                    <div className='w-full md:w-full md:flex justify-evenly'>
+                        <div className='border-b-2 pb-3 pt-2 shadow-sm w-full md:w-3/4 mt-12 bg-gray-100'>
                             <div className='p-3 flex justify-between items-center border-b-2'>
                                 <p className='text-3xl font-medium'>Shopping Cart</p>
                                 <div className='flex items-start py-2 h-12'>
@@ -137,7 +137,7 @@ const Cart = () => {
                                     return <CartItem key={currElem.id} {...currElem} />
                                 })
                             }
-                            <div className='md:flex md:pl-5'>
+                            <div className='md:flex md:pl-8'>
                                 <div className='md:w-2/3 md:justify-between flex justify-around mt-3 px-2'>
                                     <NavLink to="/products">
                                         <button className='px-3 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-sm'>CONTINUE SHOPPING</button>
