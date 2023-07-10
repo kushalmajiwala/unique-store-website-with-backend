@@ -15,7 +15,7 @@ const CartItem = ({ id, email, name, image, color, price, amount, max }) => {
                     <figure>
                         <img src={image} alt={id} className=" w-56 h-52 md:w-60 md:h-56" />
                     </figure>
-                    <div className='md:pl-5'>
+                    <div className='md:pl-5 w-60 md:w-72'>
                         <div className=''>
                             <p className=' text-gray-600 text-2xl font-medium -mt-1'>{name}</p>
                             <div className='flex -mt-3 md:-mt-4'>
@@ -25,8 +25,8 @@ const CartItem = ({ id, email, name, image, color, price, amount, max }) => {
                             <div className='-mt-2 md:-mt-2 font-medium'>
                                 <p className='text-sm text-green-600'>In Stock</p>
                             </div>
-                            <div className='flex text-sm text-gray-500 w-64 font-medium -mt-2'>
-                                <span className='w-full'>Shipping cost for the item is</span><FormatPrice price={shipping_fees} />
+                            <div className='flex text-sm text-gray-500 w-full font-medium -mt-2'>
+                                <span className='mr-1'>Shipping cost of the item : </span><FormatPrice price={shipping_fees} />
                             </div>
                             <div className='flex w-full justify-start items-center mt-1 md:-mt-0'>
                                 <div className='flex items-center'>
@@ -34,8 +34,8 @@ const CartItem = ({ id, email, name, image, color, price, amount, max }) => {
                                     <CartAmountToggle amount={amount} setDecrease={() => setDecrease(id, amount)} setIncrease={() => setIncrease(id, amount, max)} />
                                 </div>
                             </div>
-                            <div className='flex items-center -mt-0'>
-                                <span className='w-28 text-lg mr-3'>SUBTOTAL :-</span>
+                            <div className='flex items-center w-full -mt-0'>
+                                <span className='text-lg mr-2'>SUBTOTAL :-</span>
                                 <div className='text-lg font-medium'>
                                     <FormatPrice price={price * amount} />
                                 </div>
