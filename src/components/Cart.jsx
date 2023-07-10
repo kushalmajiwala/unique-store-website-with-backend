@@ -125,7 +125,7 @@ const Cart = () => {
             <div>
                 <div className='flex justify-center h-full'>
                     <div className='w-full md:w-full md:flex justify-evenly'>
-                        <div className='border-b-2 pb-3 pt-2 shadow-sm w-full md:w-3/4 mt-12 bg-gray-100'>
+                        <div className='border-b-2 pb-3 pt-2 shadow-sm w-full md:w-8/12  mt-12 bg-gray-100'>
                             <div className='p-3 flex justify-between items-center border-b-2'>
                                 <p className='text-3xl font-medium'>Shopping Cart</p>
                                 <div className='flex items-start py-2 h-12'>
