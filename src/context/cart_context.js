@@ -65,7 +65,7 @@ const CartProvider = ({ children }) => {
         const { error } = await supabase
             .from('cart')
             .delete()
-            .eq('id', id);
+            .eq('uniqueid', id);
         if (error) console.log(error);
         getAllCartData();
     }
@@ -83,7 +83,7 @@ const CartProvider = ({ children }) => {
             const { error } = await supabase
                 .from('cart')
                 .update({ amount: amount + 1 })
-                .eq('id', id);
+                .eq('uniqueid', id);
             if (error) console.log(error);
             getAllCartData();
         }
@@ -93,7 +93,7 @@ const CartProvider = ({ children }) => {
             const { error } = await supabase
                 .from('cart')
                 .update({ amount: amount - 1 })
-                .eq('id', id);
+                .eq('uniqueid', id);
             if (error) console.log(error);
             getAllCartData();
         }

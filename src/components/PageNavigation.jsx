@@ -5,7 +5,7 @@ const PageNavigation = ({ title }) => {
     return (
         <>
             <div>
-                <NavLink to="/" className=" no-underline">HOME</NavLink> / {title}
+                <NavLink to="/" className="no-underline">HOME</NavLink> / {title}
             </div>
         </>
     )

@@ -37,18 +37,21 @@ const Nav = () => {
 
     return (
         <>
-            <div className=''>
+            <div className='sm:w-full lg:w-11/12'>
                 <ul className='hidden md:flex justify-between items-center pr-4 md:p-3'>
-                    <li className='p-2 w-32 text-center px-4 mt-2 hover:bg-gray-200 rounded-3xl'>
+                    <li className='p-2 sm:w-24 lg:w-32 text-center lg:px-4 mt-2 hover:bg-gray-200 rounded-3xl'>
                         <NavLink to='/' className='no-underline text-gray-500 opacity-100'>HOME</NavLink>
                     </li>
-                    <li className='p-2 w-32 text-center px-4 mt-2 hover:bg-gray-200 rounded-3xl'>
+                    <li className='p-2 sm:w-24 lg:w-32 text-center lg:px-4 mt-2 hover:bg-gray-200 rounded-3xl'>
                         <NavLink to='/about' className='no-underline text-gray-500 opacity-100'>ABOUT</NavLink>
                     </li>
-                    <li className='p-2 w-32 text-center px-4 mt-2 hover:bg-gray-200 rounded-3xl'>
+                    <li className='p-2 sm:w-24 lg:w-32 text-center lg:px-4 mt-2 hover:bg-gray-200 rounded-3xl'>
                         <NavLink to='/products' className='no-underline text-gray-500 opacity-100'>PRODUCTS</NavLink>
                     </li>
-                    <li className='p-2 w-32 text-center px-4 mt-2 hover:bg-gray-200 rounded-3xl'>
+                    <li className='p-2 sm:w-24 lg:w-32 text-center lg:px-4 mt-2 hover:bg-gray-200 rounded-3xl'>
+                        <NavLink to='/orders' className='no-underline text-gray-500 opacity-100'>ORDERS</NavLink>
+                    </li>
+                    <li className='p-2 sm:w-24 lg:w-32 text-center lg:px-4 mt-2 hover:bg-gray-200 rounded-3xl'>
                         <NavLink to='/contact' className='no-underline text-gray-500 opacity-100'>CONTACT</NavLink>
                     </li>
                     {
@@ -57,13 +60,13 @@ const Nav = () => {
                             {user.name}
                         </li>
                     }
-                    <li className='p-2 w-32 text-center px-4 mt-2'>
+                    <li className='p-2 sm:w-24 lg:w-32 text-center lg:px-4 mt-2'>
                         {isAuthenticated
                             ? <button className='no-underline text-white bg-blue-600 hover:bg-blue-500 rounded-md py-2 px-4' onClick={logoutWithGoogle}>LOGOUT</button>
                             : <button className='no-underline text-white bg-blue-600 hover:bg-blue-500 rounded-md py-2 px-4' onClick={loginWithGoogle}>LOGIN</button>
                         }
                     </li>
-                    <li className='p-2 w-32 text-center px-4 mt-2'>
+                    <li className='p-2 sm:w-24 lg:w-32 text-center lg:px-4'>
                         <NavLink to="/cart">
                             <i className="bi bi-cart p-overlay-badge text-3xl cursor-pointer text-gray-500 opacity-100 hover:text-black">
                                 {isAuthenticated && <Badge value={total_item} severity="danger"></Badge>}
@@ -88,6 +91,9 @@ const Nav = () => {
                             </li>
                             <li className='p-3 mt-2'>
                                 <NavLink to='/products' className='no-underline text-gray-500 opacity-100' onClick={updateNavVisibility}>PRODUCTS</NavLink>
+                            </li>
+                            <li className='p-3 mt-2'>
+                                <NavLink to='/orders' className='no-underline text-gray-500 opacity-100' onClick={updateNavVisibility}>ORDERS</NavLink>
                             </li>
                             <li className='p-3 mt-2'>
                                 <NavLink to='/contact' className='no-underline text-gray-500 opacity-100' onClick={updateNavVisibility}>CONTACT</NavLink>

@@ -9,6 +9,7 @@ import 'primeicons/primeicons.css';
 import { AppProvider } from './context/productcontext';
 import { FilterContextProvider } from './context/filtercontext';
 import { CartProvider } from './context/cart_context';
+import { OrderProvider } from './context/order_context';
 import { Auth0Provider } from '@auth0/auth0-react';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -23,9 +24,11 @@ root.render(
     <AppProvider>
       <FilterContextProvider>
         <CartProvider>
-          <React.StrictMode>
-            <App />
-          </React.StrictMode>
+          <OrderProvider>
+            <React.StrictMode>
+              <App />
+            </React.StrictMode>
+          </OrderProvider>
         </CartProvider>
       </FilterContextProvider>
     </AppProvider>

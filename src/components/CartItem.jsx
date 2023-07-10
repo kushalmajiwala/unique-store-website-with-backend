@@ -4,7 +4,7 @@ import FormatPrice from '../helpers/FormatPrice'
 import CartAmountToggle from './CartAmountToggle'
 import { Button } from 'primereact/button';
 
-const CartItem = ({ id, email, name, image, color, price, amount, max }) => {
+const CartItem = ({ uniqueid, id, email, name, image, color, price, amount, max }) => {
 
     const { removeItem, setDecrease, setIncrease, shipping_fees } = useCartContext();
 
@@ -31,17 +31,17 @@ const CartItem = ({ id, email, name, image, color, price, amount, max }) => {
                             <div className='flex w-full justify-start items-center mt-1 md:-mt-0'>
                                 <div className='flex items-center'>
                                     <span className='w-full text-lg mr-3'>QTY :-</span>
-                                    <CartAmountToggle amount={amount} setDecrease={() => setDecrease(id, amount)} setIncrease={() => setIncrease(id, amount, max)} />
+                                    <CartAmountToggle amount={amount} setDecrease={() => setDecrease(uniqueid, amount)} setIncrease={() => setIncrease(uniqueid, amount, max)} />
                                 </div>
                             </div>
                             <div className='flex items-center w-full -mt-0'>
                                 <span className='text-lg mr-2'>SUBTOTAL :-</span>
-                                <div className='text-lg font-medium'>
+                                <div className='text-lg font-medium text-orange-500'>
                                     <FormatPrice price={price * amount} />
                                 </div>
                             </div>
                             <div className='mt-2.5'>
-                                <Button icon="bi bi-trash" className='text-white bg-red-600 px-3 py-1' onClick={() => removeItem(id)} severity="danger"><span className='pl-2'>REMOVE ITEM</span></Button>
+                                <Button icon="bi bi-trash" className='text-white bg-red-600 px-3 py-1' onClick={() => removeItem(uniqueid)} severity="danger"><span className='pl-2'>REMOVE ITEM</span></Button>
                             </div>
                         </div>
                     </div>
