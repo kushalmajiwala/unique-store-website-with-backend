@@ -79,14 +79,14 @@ const OrderItem = ({ uniqueid, id, placed_date, placed_address, item_image, item
                 <Dialog visible={confirmDelete} draggable={false} closable={false} className="w-11/12 md:w-1/3">
                     <div className='flex justify-center'>
                         <div className='text-center'>
-                            <i className="bi bi-check-circle text-7xl text-green-500"></i>
+                            <i className="bi bi-exclamation-circle text-7xl text-yellow-500"></i>
                             <p className="font-bold text-lg mt-4">
                                 Are you Sure you want to Cancel ?
                             </p>
                         </div>
                     </div>
                     <div className='flex justify-end w-full'>
-                        <div className='flex justify-between w-52'>
+                        <div className='flex justify-between w-56 md:w-52'>
                             <Button label="YES, CANCEL IT" severity="danger" className='mr-2' onClick={() => completeCancellation()} />
                             <Button label="NO" severity="secondary" onClick={() => setConfirmDelete(false)} />
                         </div>
