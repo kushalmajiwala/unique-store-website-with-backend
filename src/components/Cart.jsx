@@ -79,7 +79,7 @@ const Cart = () => {
 
     const paymentSuccessful = () => {
         cart.map((curElem) => {
-            addOrderData(curElem.id, user.email, new Date().toLocaleDateString(), address, curElem.image, curElem.price, curElem.amount);
+            addOrderData(curElem.id, user.email, new Date().toLocaleDateString(), address, curElem.image, curElem.price, curElem.amount, curElem.name, curElem.description);
         })
         setOrderPlace(true);
     }

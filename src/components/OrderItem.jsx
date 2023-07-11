@@ -10,7 +10,7 @@ import { Dialog } from 'primereact/dialog';
 
 const OrderItem = ({ uniqueid, id, placed_date, placed_address, item_image, item_price, quantity, name, description }) => {
     const { isAuthenticated, user } = useAuth0();
-    const { cancelOrder, getOrderProductData } = useOrderContext();
+    const { cancelOrder } = useOrderContext();
     const [confirmDelete, setConfirmDelete] = useState(false);
 
     const deleteConfirm = () => {
@@ -24,7 +24,7 @@ const OrderItem = ({ uniqueid, id, placed_date, placed_address, item_image, item
 
     return (
         <>
-            <div className='mt-10 border-2 rounded-lg h-58 border-gray-200'>
+            <div className='mt-10 border-2 rounded-lg h-58 border-gray-200 shadow-sm'>
                 <div className='h-18 flex border-b-2 bg-gray-200 border-gray-200'>
                     <div className='w-2/3 flex justify-around items-center pt-3 pb-0.5'>
                         <div className=''>
@@ -72,7 +72,7 @@ const OrderItem = ({ uniqueid, id, placed_date, placed_address, item_image, item
                     </div>
                     <div className='w-3/4 pt-2'>
                         <p className='text-lg font-medium'>{name}</p>
-                        <p className='-mt-4'>{description.substr(0, 160)}...</p>
+                        <p className='-mt-4'>{description.substr(0, 140)}...</p>
                         <NavLink to={`../singleproduct/${id}`} className="no-underline"><button className='border-2 px-3 py-1 -mt-4 border-blue-500 bg-blue-100 hover:bg-blue-500 text-black hover:text-white rounded-lg'>View Your Item</button></NavLink>
                     </div>
                 </div>

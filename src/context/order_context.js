@@ -25,17 +25,6 @@ const OrderProvider = ({ children }) => {
         }
     }
 
-    const getOrderProductData = async (productid) => {
-        if(isAuthenticated)
-        {
-            let { data } = await supabase.from('single_product').select("*").eq("id", productid);
-            if(data)
-            {
-                return data;
-            }
-        }
-    }
-
     const addOrderData = async (id, email, placed_date, placed_address, item_image, item_price, quantity, name, description) => {
         let actual_id = id.slice(0, -7);
         if (isAuthenticated) {
@@ -73,7 +62,7 @@ const OrderProvider = ({ children }) => {
     }, [isAuthenticated]);
 
     return (
-        <OrderContext.Provider value={{ ...state, addOrderData, cancelOrder, getOrderProductData }}>
+        <OrderContext.Provider value={{ ...state, addOrderData, cancelOrder }}>
             {children}
         </OrderContext.Provider>
     )
