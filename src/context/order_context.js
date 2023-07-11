@@ -10,7 +10,7 @@ const OrderProvider = ({ children }) => {
 
     const initialState = {
         order: [],
-        total_order: 0
+        total_order: 0,
     };
 
     const [state, setState] = useState(initialState);
@@ -25,17 +25,30 @@ const OrderProvider = ({ children }) => {
         }
     }
 
-    const addOrderData = async (id, email, placed_date, placed_address, item_image, item_price, quantity) => {
+    const getOrderProductData = async (productid) => {
+        if(isAuthenticated)
+        {
+            let { data } = await supabase.from('single_product').select("*").eq("id", productid);
+            if(data)
+            {
+                return data;
+            }
+        }
+    }
+
+    const addOrderData = async (id, email, placed_date, placed_address, item_image, item_price, quantity, name, description) => {
         let actual_id = id.slice(0, -7);
         if (isAuthenticated) {
             const insert_data = {
-                id: actual_id, 
-                email: email, 
-                placed_date: placed_date, 
-                placed_address: placed_address, 
-                item_image: item_image, 
-                item_price: item_price, 
-                quantity: quantity
+                id: actual_id,
+                email: email,
+                placed_date: placed_date,
+                placed_address: placed_address,
+                item_image: item_image,
+                item_price: item_price,
+                quantity: quantity,
+                name: name,
+                description: description
             }
             const { error } = await supabase
                 .from('orders')
@@ -46,12 +59,21 @@ const OrderProvider = ({ children }) => {
         }
     }
 
+    const cancelOrder = async (uniqueid) => {
+        const { error } = await supabase
+            .from('orders')
+            .delete()
+            .eq('uniqueid', uniqueid)
+        if(error) console.log(error);
+        getAllOrderData();
+    }
+
     useEffect(() => {
-       getAllOrderData();
+        getAllOrderData();
     }, [isAuthenticated]);
 
     return (
-        <OrderContext.Provider value={{ ...state, addOrderData }}>
+        <OrderContext.Provider value={{ ...state, addOrderData, cancelOrder, getOrderProductData }}>
             {children}
         </OrderContext.Provider>
     )

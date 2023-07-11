@@ -51,7 +51,8 @@ const CartProvider = ({ children }) => {
                 image: product.image[0].url,
                 max: product.stock,
                 name: product.name,
-                price: product.price
+                price: product.price,
+                description: product.description
             }
             const { error } = await supabase
                 .from('cart')
