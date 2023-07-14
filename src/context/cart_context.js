@@ -8,22 +8,6 @@ const CartProvider = ({ children }) => {
 
     const { isAuthenticated, loginWithRedirect, user } = useAuth0();
 
-    const getAllCartData = async () => {
-        if (isAuthenticated) {
-            let { data } = await supabase.from('cart').select("*").eq("email", user.email);
-            console.log(data);
-            if (data) {
-                let ptotal = 0;
-                let titem = 0;
-                data.map((curElem) => {
-                    ptotal = ptotal + curElem.price * curElem.amount
-                    titem = titem + curElem.amount
-                })
-                setState({ ...state, cart: data, total_item: titem, total_price: ptotal });
-            }
-        }
-    }
-
     const initialState = {
         cart: [],
         total_item: 0,
@@ -40,6 +24,22 @@ const CartProvider = ({ children }) => {
 
     const [state, setState] = useState(initialState);
     const [userDetails, setUserDetails] = useState(initialUserData);
+
+    const getAllCartData = async () => {
+        if (isAuthenticated) {
+            let { data } = await supabase.from('cart').select("*").eq("email", user.email);
+            console.log(data);
+            if (data) {
+                let ptotal = 0;
+                let titem = 0;
+                data.map((curElem) => {
+                    ptotal = ptotal + curElem.price * curElem.amount
+                    titem = titem + curElem.amount
+                })
+                setState({ ...state, cart: data, total_item: titem, total_price: ptotal });
+            }
+        }
+    }
 
     const addToCart = async (id, color, amount, product) => {
         if (isAuthenticated) {

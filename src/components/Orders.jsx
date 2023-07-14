@@ -33,8 +33,8 @@ const Orders = () => {
             <div className='flex justify-center'>
                 <div className='w-11/12 md:w-2/3 pt-2'>
                     {
-                        order.map((curItem) => {
-                            return <OrderItem key={curItem.id} {...curItem} />
+                        order.map((curItem, index) => {
+                            return <OrderItem key={index} {...curItem} />
                         })
                     }
                 </div>

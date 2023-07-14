@@ -133,8 +133,8 @@ const Cart = () => {
                                 </div>
                             </div>
                             {
-                                cart.map((currElem) => {
-                                    return <CartItem key={currElem.id} {...currElem} />
+                                cart.map((currElem, index) => {
+                                    return <CartItem key={index} {...currElem} />
                                 })
                             }
                             <div className='md:flex md:pl-8'>
